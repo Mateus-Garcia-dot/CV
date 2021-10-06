@@ -12,6 +12,9 @@ module.exports = merge(common, {
             },
         ],
     },
+    optimization: {
+        runtimeChunk: 'single'
+    },
     output: {
         filename: "[name].bundle.js",
         path: path.resolve(__dirname,"dist"),
