@@ -1,11 +1,123 @@
-body {
-    background-color: aqua;
-    display: flex;
-    p {
-        color: black;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        font-weight: bold;
-        font-size: 30px;
-    }
+@import 'normalize.css';
+@import "~@fontsource/capriola/index.css";
+@import "~@fontsource/roboto/500.css";
+@import "~@fontsource/amiko/400.css";
+@import "~css.gg/icons/scss/mouse.scss";
 
+@mixin circle($color,$xSize,$ysize ) {
+    background: $color;
+    border-radius: 50%;
+    width: $xSize;
+    height: $ysize;
+}
+$yellow:#F5C902;
+
+html {
+    overflow-x: hidden;
+
+}
+#firstPage{
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    #titleContainer  {
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        height: 90%;
+        .title{
+            text-transform: uppercase;
+            font-size: 4vw;
+            font-family: Capriola;
+            color: white;
+            p {
+                margin: 0;
+                #name  {
+                    color: $yellow;
+                }
+            }
+        }
+    } 
+    #scroll {
+        --ggs: 2; // Size of the mouse
+        display: flex;
+        justify-content: center;
+        color: white;
+        height: 10%;    
+    }
+}
+
+#secondPage {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    #myPictureContainer {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        width: 50%;
+        $sizeCircle: calc((25vw + 25vh)/2);
+        #firstCircle {
+            @include circle($yellow,$sizeCircle,$sizeCircle);
+            align-self: flex-start;
+            position: absolute;
+            margin-top: 3%;
+            margin-right: 80%;
+        }
+        #secondCircle {
+            @include circle($yellow,$sizeCircle,$sizeCircle);
+            position: absolute;
+            align-self: center;
+            margin-left: 80%;
+        }
+        #thirdCircle {
+            @include circle($yellow,$sizeCircle,$sizeCircle);
+            position: absolute;
+            align-self: flex-end;
+            margin: 3%;
+            margin-right: 80%;
+        }
+        img {
+            position: absolute;
+            align-self: center;
+            z-index: 2;
+            height: 80%;
+            border-radius: 250px;
+        }
+    }
+    #aboutMeContainer {
+        display: flex;
+        align-items : center;
+        justify-content: center;
+        width: 65%;
+        #squareBox {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            height: 55%;
+            width: 70%;
+            background-color: white;
+            border-radius: 150px;       
+            .writing {
+                height: 100%;
+                width: 70%;
+                p {
+                    color: black;
+                }
+                .title {
+                    height: 20%;
+                    font-size: 3vw;
+                    text-align: center;
+                    font-family: Roboto;
+                }
+                .body{
+                    height: 80%;
+                    font-size: 1vw;
+                    font-family: Amiko;
+                }
+            }
+        }
+    }
 }
