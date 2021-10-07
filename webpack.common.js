@@ -2,8 +2,11 @@ const path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin")
 module.exports = {
     entry: {
-        main: "./src/index.ts",
-        vendor: "./src/vendor.ts"
+        main: {
+            import: "./src/index.ts",
+            dependOn: "vendor",
+        },
+        vendor: "./src/vendor.ts",
     },
     plugins: [new HtmlWebpackPlugin({
         template: "./src/template.html",
@@ -23,5 +26,8 @@ module.exports = {
                 use: ["html-loader"],
             },
         ]
+    },  
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
 }

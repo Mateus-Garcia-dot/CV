@@ -1,4 +1,4 @@
 import "./main.scss"
+import { $ } from "./vendor"
 
-var a ='hello';
-console.log('assssss');
+$('p').html('kkk troco');

@@ -1,1 +1,1 @@
-console.log('vendor')
+export const $ = require( "jquery" );
