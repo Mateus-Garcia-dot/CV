@@ -3,6 +3,10 @@
 @import "~@fontsource/roboto/500.css";
 @import "~@fontsource/amiko/400.css";
 @import "~css.gg/icons/scss/mouse.scss";
+@import "~css.gg/icons/scss/album.scss";
+@import "~css.gg/icons/scss/pen.scss";
+@import "~css.gg/icons/scss/software-download.scss";
+
 
 @mixin circle($color,$xSize,$ysize ) {
     background: $color;
@@ -119,5 +123,167 @@ html {
                 }
             }
         }
+    }    
+}
+
+#thirdPage {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+
+    $sizeCircle: calc((25vw + 25vh)/2);
+    #leftCicle {
+        @include circle($yellow,$sizeCircle,$sizeCircle);
+        position: absolute;
+        margin: 1%;
+        margin-left: calc(0px - $sizeCircle/3);
+        align-self: flex-end;
+        z-index: 2;
+    }
+    
+    #rightCicle {
+        @include circle($yellow,$sizeCircle,$sizeCircle);
+        position: absolute;
+        margin: 1%;
+        margin-left: calc(105% - $sizeCircle);
+        z-index: 2;
+    }
+
+    #WhiteBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 75%;
+        width: 60%;
+        border-radius: 150px;
+        background-color: white;
+        .writing {
+            display: flex;
+            height: 80%;
+            width: 70%;
+            flex-direction: column;
+            align-items: center;
+            i{
+                --ggs: 2.5; // Size of the book icon
+            }
+            .title{
+                font-family: Roboto;
+                font-size: 2vw;
+            }
+            .infos {
+                display: flex;
+                height: 100%;
+                width: 100%;
+                flex-direction: column;
+                justify-content: space-evenly;
+                .infoBlock{
+                    display: flex;
+                    direction: row;
+                    align-items: center;
+                    .leftPart {
+                        font-family: Capriola;
+                        font-size: 1.1vw;
+                        width: 50%;
+                    }
+                    .rightPart{
+                        font-family: Amiko;
+                        width: 50%;
+                    }
+                }           
+            }
+        }
+    }
+    #universityContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 50%;
+    }
+
+    #learningContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 50%; 
     }
 }
+
+#fourthPage{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    #contactContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40%;
+        width: 30%;
+        background-color: white;
+        border-radius: 100px;
+        flex-direction: column;
+        #contactInfo {
+            height: 75%;
+            width: 90%;
+            .titulo {
+                font-size: 2vw;
+                text-align: center;
+                font-family: Roboto;
+            }
+            #emailContainer {
+                display: flex;
+                width: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                .email {
+                    font-family: amiko;
+                    font-size: 1.5vw;
+                }
+                p{
+                    margin:2%;
+                }
+                
+            }
+        }
+        #imgs {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 15%;
+            }
+        }
+        #downloadButton{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $yellow;
+            border-radius: 150px;
+            width: 50%;
+            height: 15%;
+            align-self: center;
+
+            i {
+                --ggs: 1.3; // change the download icon size
+            }
+            p{
+                font-size: 1vw;
+                font-family: Roboto;
+                margin-left: 5%;
+            }
+
+        } 
+    }
+}
+
