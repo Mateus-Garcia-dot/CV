@@ -79,7 +79,21 @@ html {
         justify-content: center;
         color: white;
         height: 10%;    
+        .gg-mouse{
+            animation: mouseUpAndDown 7s linear infinite;
+        }
     }
+
+    @keyframes mouseUpAndDown {
+        0%,100% {
+            margin-top: 0;
+        }
+        50% {
+            margin-top: 40px;
+        }
+    }
+
+
 }
 
 #secondPage {
