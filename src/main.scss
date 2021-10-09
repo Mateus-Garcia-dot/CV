@@ -18,8 +18,18 @@ $yellow:#F5C902;
 
 html {
     overflow-x: hidden;
-
+    position: relative;
 }
+*{
+    z-index: 1;
+}
+
+#canvasWrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
 #firstPage{
     height: 100vh;
     width: 100vw;

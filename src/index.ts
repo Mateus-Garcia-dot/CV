@@ -11,4 +11,4 @@ $(".gg-mouse").on('click', function(){
     translation.translatePage("PT-BR");
 })
 
-comets.createComets(1);
+comets.comets(500);
