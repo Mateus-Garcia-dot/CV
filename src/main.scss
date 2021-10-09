@@ -34,11 +34,14 @@ html {
             font-size: 4vw;
             font-family: Capriola;
             color: white;
+            div {
+                display: inline-block;
+            }
             p {
-                margin: 0;
                 #name  {
                     color: $yellow;
                 }
+                margin: 0;
             }
         }
     } 
@@ -142,15 +145,12 @@ html {
         align-self: flex-end;
         z-index: 2;
     }
-    
     #rightCicle {
         @include circle($yellow,$sizeCircle,$sizeCircle);
         position: absolute;
-        margin: 1%;
-        margin-left: calc(105% - $sizeCircle);
-        z-index: 2;
+        margin-top: 1%;
+        margin-left: calc(103% - $sizeCircle);
     }
-
     #WhiteBox {
         display: flex;
         align-items: center;
@@ -233,7 +233,7 @@ html {
         #contactInfo {
             height: 75%;
             width: 90%;
-            .titulo {
+            .title {
                 font-size: 2vw;
                 text-align: center;
                 font-family: Roboto;
