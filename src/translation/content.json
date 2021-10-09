@@ -1,0 +1,96 @@
+{
+    "PT-BR": {
+        "firstPage":{
+            "greetings": "Olá",
+            "whoAmI": "eu sou o",
+            "name": "mateus"
+        }, 
+        "secondPage": {
+            "title": "Sobre mim",
+            "body": "lorem ipsum dolor sit amet, consectetur adipis"
+        },
+        "thirdPage": {
+            "university":{
+                "title": "Universidade",
+                "content": [
+                    {
+                        "title": "Cursando:",
+                        "body" : "Análise e desenvolvimento de sistemas"
+                    },
+                    
+                    {
+                        "title": "Local:",
+                        "body": "Universidade Federal do Paraná"
+                    },
+                    {
+                        "title": "Inicio:",
+                        "body": "2020"
+                    },
+                    {
+                        "title": "Conclusão:",
+                        "body": "2024"
+                    }
+                ]
+                },
+                "learning": {
+                    "title": "Aprendendo",
+                    "lenguageTitle": "Linguas:",
+                    "lenguage" : "Inglês"
+                }
+            },
+            "forthpage": {
+                "contact": {
+                    "title" : "Contato",
+                    "download": "Baixe meu curriculo"
+                }
+            }
+        },
+        
+    "EN-US": {
+        "firstPage":{
+            "greetings": "Hello",
+            "whoAmI": "My name is",
+            "name": "mateus"
+        }, 
+        "secondPage": {
+            "title": "About me",
+            "body": "lorem ipsum dolor sit amet, consectetur adipis"
+        },
+        "thirdPage": {
+            "university":{
+                "title": "University",
+                "content": [
+                    {
+                        "title": "Studying:",
+                        "body" : "Análise e desenvolvimento de sistemas"
+                    },
+                    
+                    {
+                        "title": "Where:",
+                        "body": "Universidade Federal do Paraná"
+                    },
+                    {
+                        "title": "Started:",
+                        "body": "2020"
+                    },
+                    {
+                        "title": "Will finish:",
+                        "body": "2024"
+                    }
+                ]
+                },
+                "learning": {
+                    "title": "Learning",
+                    "lenguageTitle": "Lenguages:",
+                    "lenguage" : "English"
+                }
+            },
+        "forthpage": {
+            "contact": {
+                "title" : "Contact",
+                "download": "Download my Curriculum"
+            }
+        }
+    }
+
+}
