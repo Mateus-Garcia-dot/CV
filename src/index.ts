@@ -4,11 +4,14 @@ import * as translation from './translation/translation';
 import * as comets from './comets/comets';
 
 
-$("#name").on('click', function(){
-    translation.translatePage("EN-US");
-})
-$(".gg-mouse").on('click', function(){
-    translation.translatePage("PT-BR");
+var isPT = true;
+$("#lenguageBT").on("click", function() {
+    if (isPT) {
+        translation.translatePage('EN-US')
+    } else{ 
+       translation.translatePage('PT-BR')
+    }
+    isPT = !isPT;
 })
 
 comets.comets(500);

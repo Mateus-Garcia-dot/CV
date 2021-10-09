@@ -1,6 +1,7 @@
 {
     "PT-BR": {
         "firstPage":{
+            "button": "English",
             "greetings": "Olá",
             "whoAmI": "eu sou o",
             "name": "mateus"
@@ -48,6 +49,7 @@
         
     "EN-US": {
         "firstPage":{
+            "button": "Português",
             "greetings": "Hello",
             "whoAmI": "My name is",
             "name": "mateus"

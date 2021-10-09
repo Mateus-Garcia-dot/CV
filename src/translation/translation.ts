@@ -12,6 +12,7 @@ const availableLanguages = function(language: string): any{
 
 export const translatePage = function(language :string){
     let languageToTranslate: ("PT-BR"|"EN-US") = availableLanguages(language);
+    $("#firstPage #lenguageBT").html(translation[languageToTranslate].firstPage.button);
     $("#firstPage #greetings").html(translation[languageToTranslate].firstPage.greetings);
     $("#firstPage #whoAmI").html(translation[languageToTranslate].firstPage.whoAmI);
     
