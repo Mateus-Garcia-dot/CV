@@ -267,15 +267,13 @@ html {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 40%;
-        width: 30%;
+        padding: 3%;
         background-color: white;
         border-radius: 100px;
         flex-direction: column;
         #contactInfo {
-            height: 75%;
-            width: 90%;
             .title {
+                margin-top: 2%;
                 font-size: 2vw;
                 text-align: center;
                 font-family: Roboto;
@@ -306,25 +304,33 @@ html {
                 width: 15%;
             }
         }
-        #downloadButton{
+        #downloadContainer {
+            width:100%;
+            margin-top: 10%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: $yellow;
-            border-radius: 150px;
-            width: 50%;
-            height: 15%;
-            align-self: center;
-
-            i {
-                --ggs: 1.3; // change the download icon size
+            #downloadButton{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $yellow;
+                border-radius: 150px;
+                width: 50%;
+                height: 15%;
+                align-self: center;
+                padding: 1%;
+                padding-left: 4%;
+                padding-right: 4%;
+                i {
+                    --ggs: 1.3; // change the download icon size
+                }
+                p{
+                    font-size: 1vw;
+                    font-family: Roboto;
+                    margin-left: 5%;
+                }
             }
-            p{
-                font-size: 1vw;
-                font-family: Roboto;
-                margin-left: 5%;
-            }
-
         } 
     }
 }

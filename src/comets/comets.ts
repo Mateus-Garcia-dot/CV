@@ -16,12 +16,6 @@ async function clock(interval: number,canvas){
   }
 }
 
-async function refreshHeight(canvas){
-  while(true){
-    await sleep(1000);
-    
-  }
-}
 
 function getAngle(x1: number,y1: number,x2: number,y2: number) {
   let x = x2 - x1;
@@ -110,7 +104,7 @@ export const comets = function(frequency: number) {
     canvas.setWidth(pageWidth);
     $("canvas").css('height', '100%');
     $("canvas").css('width', '100%');
-    refreshHeight(canvas);
+
     clock(40,canvas)
     cometSpawner(frequency,pageHeight,pageWidth,canvas);
 } 

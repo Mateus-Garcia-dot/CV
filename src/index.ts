@@ -15,4 +15,4 @@ $("#lenguageBT").on("click", function() {
 })
 
 
-comets.comets(400);
+comets.comets(300);
