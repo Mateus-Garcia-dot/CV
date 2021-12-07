@@ -1,110 +1,112 @@
-import { $ } from '../vendor';
-import { fabric } from '../vendor';
+import * as PIXI from 'pixi.js'
+import gsap from "gsap";
+import { Power0 } from "gsap";
+import $ from "jquery";
 
-function randomIntFromInterval(min: number, max: number) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
+var cometConfig:any = {
+  currNumber: 0,
+  quantity: 5,
+  comets: [],
+  duration: 1,
+  size: 0.1,
+  trailSize: 200, 
+}
 
-function sleep(ms: number) {
+const canvasWrapper: any = document.getElementById("canvasWrapper")
+
+const app = new PIXI.Application({ resizeTo: canvasWrapper });
+
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function getAngle(x1, y1, x2, y2) {
+  let x = x2 - x1;
+  let y = y2 - y1;
+  let radAngle = Math.atan(y / x);
+
+  if (x < 0) return radAngle;
+  return radAngle + Math.PI;
+}
+function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function clock(interval: number,canvas){
-  while(true){
-    await sleep(interval);
-    canvas.renderAll();
+
+function cometAnimation(comet) {
+  comet.x = Math.random() * app.screen.width;
+  comet.y = Math.random() * app.screen.height;
+  let finalX = Math.random() * app.screen.width;
+  let finalY = Math.random() * app.screen.height;
+  comet.rotation = getAngle(comet.x, comet.y, finalX, finalY);
+  let duration = randomIntFromInterval(1, 5);
+  gsap.set(comet, { alpha: 0 });
+  gsap.to(comet, {
+      alpha: 1,
+      duration: duration / 2,
+      ease: "power1.inOut",
+      onComplete: function () {
+          gsap.to(comet, {
+              alpha: 0,
+              duration: duration / 2,
+              ease: "power1.inOut"
+          })
+      }
+  });
+  gsap.to(comet, {
+      x: finalX,
+      y: finalY,
+      ease: Power0.easeIn,
+      duration: duration,
+      onComplete: function () {
+          cometAnimation(comet);
+      }
+      }
+  );
+}
+
+function createComet() {
+  let sizeComet = cometConfig.size;
+  let trailSize = cometConfig.trailSize;
+  let comet = new PIXI.Graphics()
+      .beginFill(0xFFFFFF)
+      .lineStyle(0, 0xffffff)
+      .arc(0, 0, 100 * sizeComet, Math.PI / 2, 3 * Math.PI / 2)
+      .moveTo(0, -100 * sizeComet)
+      .lineTo(0, 100 * sizeComet)
+      .lineTo(trailSize, 0)
+      .closePath()
+      .endFill();
+
+  cometAnimation(comet);
+  return comet
+}
+
+
+async function commetQuantity() {
+  while (true) {
+      await sleep(1000);
+      if (cometConfig.currNumber < cometConfig.quantity) {
+          cometConfig.currNumber++;
+          addCometToStage();
+      } 
+      if (cometConfig.currNumber > cometConfig.quantity) {
+          cometConfig.currNumber--;
+          app.stage.removeChild(cometConfig.comets[0]);
+      }
   }
 }
 
-
-function getAngle(x1: number,y1: number,x2: number,y2: number) {
-  let x = x2 - x1;
-  let y = y2 - y1;
-  let radAngle = Math.atan(y/x);
-  let pi = Math.PI;
-  let angle = radAngle * (180/pi);
-  
-  if (x < 0) return angle;
-  return angle + 180;
+function addCometToStage() {
+  let comet = createComet();
+  cometConfig.comets.push(comet);  
+  app.stage.addChild(comet);
 }
 
+export function init() {
+  commetQuantity();
+  addCometToStage();
+  // append app.view on canvasWrapper class jquery
+  $('#canvasWrapper').append($(app.view));
 
-const createComet = function(pageHeight:number,pageWidth:number,canvas){
-  let trailSize = 130; 
-  let cometSize = 10;
-
-  let initialPosLeft = randomIntFromInterval(0,pageWidth);
-  let initialPosTop = randomIntFromInterval(0,pageHeight);
-  let finalPosLeft = randomIntFromInterval(initialPosLeft-1000,initialPosLeft+1000);
-  let finalPosTop = randomIntFromInterval(initialPosTop-1000,initialPosTop+1000);
-  let cometAngle = getAngle(initialPosLeft,initialPosTop,finalPosLeft,finalPosTop);
-
-  let circle = new fabric.Circle({
-    radius: cometSize, fill: 'white',
-  });
-  
-  let trail = new fabric.Polygon([
-    { x: cometSize, y: 0 },
-    { x: cometSize, y: cometSize*2 },
-    { x: trailSize, y: cometSize},
-    ]);
-  let trailGradient = new fabric.Gradient({
-    type: 'linear',
-    gradientUnits: 'pixels', // or 'percentage'
-    coords: { x1: 0, y1: 0, x2: trail.width, y2: 0 },
-    colorStops:[
-      { offset: 0, color: 'white' },
-      { offset: 0.3, color: '#E6E6E6  ' },
-      { offset: 1, color: 'black'}
-    ],
-  });
-  trail.set('fill',trailGradient);
-
-  let comet = new fabric.Group([trail,circle]);
-  comet.angle = cometAngle;
-  comet.left = initialPosLeft;
-  comet.top= initialPosTop;
-
-  let duration = 1000;
-  comet.animate('left', finalPosLeft, {
-    duration: duration,
-    onComplete: () => canvas.remove(comet),
-  });
-  comet.animate('top', finalPosTop, {
-    duration: duration,
-    onComplete: () => canvas.remove(comet),
-  });
-
-  comet.set({
-    opacity: 0
-  });
-  comet.animate('opacity', 1, {
-    duration: duration/2,
-    onComplete: () => comet.animate('opacity', 0, {
-      duration: duration/2,
-    })
-  });
-  return comet;  
-};
-
-
-async function cometSpawner(interval: number,pageHeight, pageWidth,canvas){
-  while(true){
-    await sleep(interval);
-    canvas.add(createComet(pageHeight,pageWidth,canvas));
-  }
 }
-
-export const comets = function(frequency: number) {
-    let pageHeight = $(document).height();
-    let pageWidth = $(document).width();
-    let canvas = new fabric.StaticCanvas('canvas');
-
-    canvas.setHeight(pageHeight);
-    canvas.setWidth(pageWidth);
-    $("canvas").css('height', '100%');
-    $("canvas").css('width', '100%');
-
-    clock(40,canvas)
-    cometSpawner(frequency,pageHeight,pageWidth,canvas);
-} 

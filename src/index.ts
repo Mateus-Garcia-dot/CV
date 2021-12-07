@@ -14,5 +14,4 @@ $("#lenguageBT").on("click", function() {
     isPT = !isPT;
 })
 
-
-comets.comets(300);
+comets.init();
