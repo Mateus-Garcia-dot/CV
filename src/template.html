@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Curriculum</title>
 </head>
-<div id=canvasWrapper>
-    <canvas id=canvas></canvas>
-</div>
+
+
 <body>
+
+    <div id="canvasWrapper"></div>
+    
     <div id="firstPage">
-        <button id="lenguageBT">English</button>
+        <div id="buttonContainer">
+            <button id="lenguageBT">English</button>
+        </div>
         <div id="titleContainer">
             <div class="title">
                 <p id='greetings'> Olá </p>
@@ -17,13 +22,15 @@
             </div>
         </div>
         <div id='scroll'>
-            <i class="gg-mouse" ></i>
+            <i class="gg-mouse"></i>
         </div>
     </div>
 
     <div id="secondPage">
         <div id='myPictureContainer'>
             <img src="./assets/images/myPicture.jpg" alt="Picture" id="myPhoto">
+        </div>
+        <div id="circles">
             <div id="firstCircle"></div>
             <div id="secondCircle"></div>
             <div id="thirdCircle"></div>
@@ -32,17 +39,20 @@
             <div id="squareBox">
                 <div class="writing">
                     <p class="title"> Sobre mim</p>
-                    <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, suscipit animi! Tempora eveniet, hic consequuntur itaque odit provident illo in soluta minus alias unde officia corrupti architecto eum inventore earum?</p>
+                    <p class="body">Olá! Eu sou um estudante começando na carreira de desenvolvimento de software, tenho
+                        paixão pela profissão e estou sempre disposto a aprender mais.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="thirdPage">
-        <div id="leftCicle"></div>
-        <div id="rightCicle"></div>
+        <div class='circlesT'>
+            <div id="leftCircle"></div>
+            <div id="rightCircle"></div>
+        </div>
         <div id="universityContainer">
-            <div id="WhiteBox">
+            <div class="WhiteBox">
                 <div class="writing">
                     <i class="gg-album"></i>
                     <p class="title"> Universidade </p>
@@ -54,7 +64,7 @@
                             <div class="rightPart">
                                 <p>Análise e desenvolvimento de sistemas.</p>
                             </div>
-                        </div>  
+                        </div>
                         <div class="infoBlock">
                             <div class="leftPart">
                                 <p>Local:</p>
@@ -63,7 +73,7 @@
                                 <p>Universidade Federal do Paraná</p>
                             </div>
                         </div>
-                    
+
                         <div class="infoBlock">
                             <div class="leftPart">
                                 <p>Inicio:</p>
@@ -88,30 +98,25 @@
             <div id="WhiteBox">
                 <div class="writing">
                     <i class="gg-pen"></i>
-                    <p class="title"> Aprendendo </p>
+                    <p class="title"> Conhecimentos: </p>
                     <div class="infos">
                         <div class="infoBlock">
                             <div class="leftPart">
                                 <p>Frontend: </p>
                             </div>
                             <div class="rightPart">
-                                <p>HTML</p>
-                                <p>CSS</p>
-                                <p>JavaScript</p>
+                                <p>HTML, CSS, JavaScript</p>
                             </div>
-                        </div>  
+                        </div>
                         <div class="infoBlock">
                             <div class="leftPart">
                                 <p>Backend:</p>
                             </div>
                             <div class="rightPart">
-                                <p>PHP</p>
-                                <p>Python</p>
-                                <p>C</p>
-                                <p>MySQL</p>
+                                <p>PHP, Python, C, MySQL</p>
                             </div>
                         </div>
-                    
+
                         <div class="infoBlock">
                             <div class="leftPart">
                                 <p id='lenguage'>Linguas:</p>
@@ -125,25 +130,34 @@
             </div>
         </div>
     </div>
+    </div>
 
     <div id="fourthPage">
         <div id="contactContainer">
             <div id="contactInfo">
                 <p class="title">Contato</p>
                 <div id="emailContainer">
-                    <p class='email'>mateusm.garcia0@gmail.com</p>               
+                    <p class='email'>mateusm.garcia0@gmail.com</p>
                 </div>
                 <div id="imgs">
-                    <img src="./assets/images/github.svg" alt="github">
+                    <a href="https://github.com/Mateus-Garcia-dot">
+                        <img src="./assets/images/github.svg" alt="github" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/mateusmedeirosgarcia">
+                        <img src="./assets/images/linkedin.svg" alt="github" />
+                    </a>
                 </div>
                 <div id="downloadContainer">
-                    <div id="downloadButton">
-                        <i class="gg-software-download"></i>
-                        <p id="downloadBody">Baixe meu curriculo</p>
-                    </div>
+                    <a href="./assets/pdf/resume.pdf">
+                        <div id="downloadButton">
+                            <i class="gg-software-download"></i>
+                            <p id="downloadBody">Baixe meu curriculo</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </body>
+
 </html>

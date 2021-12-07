@@ -16,245 +16,392 @@
 }
 $yellow:#F5C902;
 
+*{
+    z-index:3;
+}
+
+
 html {
     overflow-x: hidden;
-    position: relative;
-}
-*{
-    z-index: 1;
 }
 
+button {
+    outline: none;
+    border: none;
+}
 #canvasWrapper {
     position: absolute;
-    height: 100%;
-    width: 100%;
+    height: 100vw;
+    width: 100vh;
+
 }
 
-#firstPage{
-    height: 100vh;
-    width: 100vw;
+#firstPage {
     background-color: black;
-
-    #lenguageBT{
-        position: absolute;
-        height: 50px;
-        width: 100px;
-        right: 0;
-        margin: 2%;
-        font-family: capriola;
-        background-color: black;
-        color: white;
-        border: 1px solid yellow;
-        &:hover{
-            cursor: pointer;
-            background-color: white;
-            color: black;
-            transition: all 0.6s ease-in-out;
-        }
-    }
-    #titleContainer  {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    #buttonContainer{
         display: flex;
         align-items: center;
-        justify-content:center;
-        height: 90%;
-        .title{
-            text-transform: uppercase;
-            font-size: 4vw;
-            font-family: Capriola;
+        justify-content: flex-end;
+        #lenguageBT{ 
+            background-color: black;
             color: white;
-            div {
-                display: inline-block;
+            font-family: amiko;
+            border: 1px solid $yellow;;
+            align-self: flex-end;
+            padding: 20px 20px 20px 20px;
+            font-size: 100%;
+            margin: 2%;
+            @media (max-width: 1024px) {
+                margin: 4%;
             }
-            p {
-                #name  {
-                    color: $yellow;
-                }
-                margin: 0;
+            &:hover {
+                cursor: pointer;
+                color: black;
+                background-color:white;
+                transition: all 0.5s ease-in-out;
+                
             }
         }
-    } 
-    #scroll {
-        --ggs: 2; // Size of the mouse
+    }
+        
+    #titleContainer {
         display: flex;
+        flex-direction: row;
+        align-items: center;
         justify-content: center;
-        color: white;
-        height: 10%;    
+        flex-grow: 0.9;
+        .title {
+            font-family: capriola;
+            font-size: 500%;
+            color: white;
+            margin-bottom: 5%;
+            @media (max-width: 1024px) {
+                font-size: 8vw;   
+            }
+            #name {
+                color: $yellow
+            }
+            p{
+                margin: 0;
+                text-transform: uppercase;
+            }
+        }            
+    }
+    #scroll {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         .gg-mouse{
-            animation: mouseUpAndDown 7s linear infinite;
+            --ggs: 2;
+            color:white;
+            animation: mouseUpDown 2s linear infinite;
+            @media screen and (max-width: 1024px) {
+                --ggs: 2.5; 
+            }
         }
+        @keyframes mouseUpDown {
+            0%, 100% {
+              bottom: 0;
+            }
+            50% {
+              bottom: 50px;
+            }
+          }
     }
-
-    @keyframes mouseUpAndDown {
-        0%,100% {
-            margin-top: 0;
-        }
-        50% {
-            margin-top: 40px;
-        }
-    }
-
 
 }
 
 #secondPage {
     display: flex;
     flex-direction: row;
-    height: 100vh;
     width: 100vw;
+    height: 100vh;
     background-color: black;
-    #myPictureContainer {
+    align-items: center;
+    justify-items: center;
+    @media screen and (max-width: 1024px) {
+        height: 100vh * 2;
+        flex-direction: column; 
+    }
+    #circles {
         display: flex;
-        position: relative;
-        justify-content: center;
-        width: 50%;
-        $sizeCircle: calc((25vw + 25vh)/2);
+        height: 100vh;
+        flex-direction: column;
+        width: 45%;
+        position: absolute;
+        z-index: 3;
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+            height: 200vh;
+        }
+        $size: 100%; 
         #firstCircle {
-            @include circle($yellow,$sizeCircle,$sizeCircle);
-            align-self: flex-start;
+            @include circle($yellow, 350px,350px);
             position: absolute;
-            margin-top: 3%;
-            margin-right: 80%;
+            margin-left: -100px;
+            margin-top: 100px;
+            top: 0;
+            left: 0;
+            @media screen and (max-width: 1024px) {
+                margin-top:0;
+                @include circle($yellow, 250px,250px);
+            }        
         }
         #secondCircle {
-            @include circle($yellow,$sizeCircle,$sizeCircle);
+            @include circle($yellow, 350px,350px);
             position: absolute;
-            align-self: center;
-            margin-left: 80%;
+            justify-self: flex-start;
+            align-self:flex-end;
+            margin-top: auto;
+            margin-bottom: auto;
+            top: 0; bottom: 0; right: 0;
+            @media screen and (max-width: 1024px) {
+                @include circle($yellow, 250px,250px);
+            }     
         }
         #thirdCircle {
-            @include circle($yellow,$sizeCircle,$sizeCircle);
+            @include circle($yellow, 350px,350px);
+            margin-left: -100px;
             position: absolute;
-            align-self: flex-end;
-            margin: 3%;
-            margin-right: 80%;
+            bottom: 0;
+            left: 0;
+            @media screen and (max-width: 1024px) {
+                @include circle($yellow, 250px,250px);
+            }     
         }
-        img {
-            position: absolute;
-            align-self: center;
-            z-index: 2;
-            height: 80%;
-            border-radius: 250px;
+    }
+    #myPictureContainer{
+        display: flex;
+        width: 40%;
+        justify-content: center;
+        @media screen and (max-width: 1024px) {    
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }   
+        z-index: 4;
+        #myPhoto {
+            display: flex;
+            width: auto;
+            height: 750px;
+            border-radius: 200px;
+            @media (max-width: 1024px) {    
+                justify-self: center;
+                align-self: center;
+                height:70%;
+            }   
         }
     }
     #aboutMeContainer {
         display: flex;
-        align-items : center;
+        width: 60%;
+        height: 100vh;
         justify-content: center;
-        width: 65%;
-        #squareBox {
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            height: 55%;
-            width: 70%;
+        align-items: center;
+        @media (max-width: 1024px) {    
+            width: 90%;
+        }   
+        #squareBox{
             background-color: white;
-            border-radius: 150px;       
-            .writing {
-                height: 100%;
-                width: 70%;
-                p {
-                    color: black;
-                }
+            padding: 7%;
+            width: 60%;
+            height: 35%;
+            border-radius: 100px;
+            @media screen and (max-width: 1024px) {    
+                width: 100%;
+                height:auto;
+                height: 50%;
+            }   
+            .writing{
+                display: flex;
+                flex-direction: column;
                 .title {
-                    height: 20%;
-                    font-size: 3vw;
+                    margin: 3%;
+                    font-family: roboto;
                     text-align: center;
-                    font-family: Roboto;
+                    font-size: 300%;
+                    @media screen and (max-width: 1024px) {  
+                        margin: 10%;
+                        font-size: 100px;
+                    }
                 }
-                .body{
-                    height: 80%;
-                    font-size: 1vw;
-                    font-family: Amiko;
+                .body {
+                    font-size: amiko;    
+                    font-size: 160%;
+                    line-height: 140%;
+                    @media screen and (max-width: 1024px) {  
+                        font-size: 50px;
+                    }
                 }
             }
         }
-    }    
+    }
+
 }
 
 #thirdPage {
     display: flex;
-    flex-direction: row;
-    height: 100vh;
-    width: 100vw;
     background-color: black;
+    width: 100vw;
+    height: 100vh;
+    @media screen and (max-width: 1024px) {  
+        height: 100vh * 2;
+        flex-direction: column; 
+    }
 
-    $sizeCircle: calc((25vw + 25vh)/2);
-    #leftCicle {
-        @include circle($yellow,$sizeCircle,$sizeCircle);
-        position: absolute;
-        margin: 1%;
-        margin-left: calc(0px - $sizeCircle/3);
-        align-self: flex-end;
-        z-index: 2;
-    }
-    #rightCicle {
-        @include circle($yellow,$sizeCircle,$sizeCircle);
-        position: absolute;
-        margin-top: 1%;
-        margin-left: calc(103% - $sizeCircle);
-    }
-    #WhiteBox {
+    .circlesT {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 75%;
-        width: 60%;
-        border-radius: 150px;
-        background-color: white;
-        .writing {
-            display: flex;
-            height: 80%;
-            width: 70%;
-            flex-direction: column;
-            align-items: center;
-            i{
-                --ggs: 2.5; // Size of the book icon
-            }
-            .title{
-                font-family: Roboto;
-                font-size: 2vw;
-            }
-            .infos {
-                display: flex;
-                height: 100%;
-                width: 100%;
-                flex-direction: column;
-                justify-content: space-evenly;
-                .infoBlock{
-                    display: flex;
-                    direction: row;
-                    align-items: center;
-                    .leftPart {
-                        font-family: Capriola;
-                        font-size: 1.1vw;
-                        width: 50%;
-                    }
-                    .rightPart{
-                        font-family: Amiko;
-                        width: 50%;
-                    }
-                }           
-            }
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        z-index: 1;
+    
+        @media screen and (max-width: 1024px) {
+            height: 100vh * 2;
         }
+        #leftCircle {
+            @include circle($yellow, 350px,350px);
+            position: absolute;
+            margin-left: -100px;
+            margin-top: 100px;
+            top: 0;
+            left: 0;
+            @media screen and (max-width: 1024px) {
+                margin-top:0;
+                @include circle($yellow, 250px,250px);
+            }        
+        }
+    
+        #rightCircle {
+            @include circle($yellow, 350px,350px);
+            position: absolute;
+            justify-self: flex-start;
+            align-self:flex-end;
+            margin-top: auto;
+            margin-bottom: auto;
+            bottom: 0; right: 0;
+            @media screen and (max-width: 1024px) {
+                @include circle($yellow, 250px,250px);
+            }     
+        }
+
+
     }
     #universityContainer {
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
         width: 50%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 1024px) {  
+            width: 100%;
+        }
+        .WhiteBox {
+            background-color: white;
+            width: 50%;
+            height: 80%;
+            border-radius: 100px;
+            @media screen and (max-width: 1024px) {  
+                width: 80%;
+            }
+            .writing {
+                display: flex;
+                flex-direction: column;
+                padding: 10%;
+                align-items: center;
+                .gg-album {
+                    --ggs: 2;
+                    margin: 1%;
+                }
+                .title {
+                    margin: 5%;
+                    font-family: roboto;
+                    text-align: center;
+                    font-size: 270%;
+                    @media screen and (max-width: 1024px) {  
+                        font-size: 100px;
+                    }
+                }
+                .infos {
+                    display: flex;
+                    flex-direction: column;
+                    line-height: 140%;
+                    font-size: amiko;    
+                    font-size: 120%;
+                    height: 30%;
+                    width: 100%;
+                    flex-wrap: wrap;
+                    @media screen and (max-width: 1024px) {  
+                        font-size: 50px;
+                    }
+                    .leftPart{
+                        font-family: roboto;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+    #learningContainer {
+        display:flex;
+        width:  50%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 1024px) {  
+            width: 100%;
+        }
+        #WhiteBox {
+            background-color: white;
+            width: 50%; 
+            height: 80%;
+            border-radius: 100px;
+            @media screen and (max-width: 1024px) {  
+                width: 80%;
+            }
+            .writing {
+                display: flex;
+                flex-direction: column;
+                padding: 10%;
+                align-items: center;
+                .gg-pen {
+                    --ggs: 2;
+                    margin: 1%;
+                }
+                .title {
+                    margin: 5%;
+                    font-family: roboto;
+                    font-size: 270%;
+                    @media screen and (max-width: 1024px) {  
+                        font-size: 100px;
+                    }
+                }
+                .infos {
+                    display: flex;
+                    width: 90%;
+                    flex-direction: column;
+                    line-height: 140%;
+                    font-size: amiko;    
+                    font-size: 120%;
+                    @media screen and (max-width: 1024px) {  
+                        font-size: 50px;
+                    }
+                    .leftPart{
+                        font-family: roboto;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
     }
 
-    #learningContainer {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 50%; 
-    }
+
 }
+
 
 #fourthPage{
     display: flex;
@@ -271,12 +418,19 @@ html {
         background-color: white;
         border-radius: 100px;
         flex-direction: column;
+        @media screen and (max-width: 1024px) {  
+            padding: 9%;
+        }
         #contactInfo {
             .title {
                 margin-top: 2%;
                 font-size: 2vw;
                 text-align: center;
                 font-family: Roboto;
+                @media screen and (max-width: 1024px) {  
+                    font-size: 350%;
+                    margin-top: 1%;
+                }
             }
             #emailContainer {
                 display: flex;
@@ -287,9 +441,15 @@ html {
                 .email {
                     font-family: amiko;
                     font-size: 1.5vw;
+                    @media screen and (max-width: 1024px) {  
+                        font-size: 140%;
+                    }
                 }
                 p{
                     margin:2%;
+                    @media screen and (max-width: 1024px) {  
+                        margin: 1%;
+                    }
                 }
                 
             }
@@ -300,16 +460,27 @@ html {
             flex-direction: row;
             align-items: center;
             justify-content: center;
+            a{
+                margin: 2%;
+            }
             img {
-                width: 15%;
+                width: 3.5vw;
+                @media screen and (max-width: 1024px) {  
+                    width: 15vw;
+                }
             }
         }
         #downloadContainer {
             width:100%;
             margin-top: 10%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                color: inherit; 
+                text-decoration: inherit; 
+              }
             #downloadButton{
                 display: flex;
                 align-items: center;
@@ -322,16 +493,24 @@ html {
                 padding: 1%;
                 padding-left: 4%;
                 padding-right: 4%;
+                @media screen and (max-width: 1024px) {  
+                    width: 80%;
+                }
                 i {
-                    --ggs: 1.3; // change the download icon size
+                    --ggs: 1.3; 
                 }
                 p{
                     font-size: 1vw;
+                    text-align: center;
                     font-family: Roboto;
                     margin-left: 5%;
+                    @media screen and (max-width: 1024px) {  
+                        font-size: 120%;
+                    }
                 }
             }
         } 
     }
 }
+
 
