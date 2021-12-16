@@ -1,7 +1,7 @@
-import * as PIXI from 'pixi.js'
-import gsap from "gsap";
-import { Power0 } from "gsap";
-import $ from "jquery";
+import { PIXI } from '../vendor';
+import { gsap } from '../vendor';
+import { Power0 } from '../vendor';
+import { $ } from '../vendor';
 
 var cometConfig:any = {
   currNumber: 0,
@@ -12,9 +12,15 @@ var cometConfig:any = {
   trailSize: 200, 
 }
 
-const canvasWrapper: any = document.getElementById("canvasWrapper")
+function resize(){
+  app.renderer.resize(window.innerWidth, window.innerHeight);
+}
 
-const app = new PIXI.Application({ resizeTo: canvasWrapper });
+
+const canvasWrapper:any = document.getElementById('wholePage');
+
+var app = new PIXI.Application({ resizeTo: canvasWrapper });
+app.view.style.position = 'absolute';
 
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
@@ -107,6 +113,6 @@ export function init() {
   commetQuantity();
   addCometToStage();
   // append app.view on canvasWrapper class jquery
-  $('#canvasWrapper').append($(app.view));
+  $('body').prepend($(app.view));
 
 }
