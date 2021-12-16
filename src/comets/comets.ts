@@ -2,14 +2,14 @@ import { PIXI } from '../vendor';
 import { gsap } from '../vendor';
 import { Power0 } from '../vendor';
 import { $ } from '../vendor';
+const comet1 = require("/home/mateus/gitProjects/CV/src/assets/cometsSprites/size1.svg") as string;
+
 
 var cometConfig:any = {
   currNumber: 0,
   quantity: 5,
   comets: [],
   duration: 1,
-  size: 0.1,
-  trailSize: 200, 
 }
 
 function resize(){
@@ -68,24 +68,13 @@ function cometAnimation(comet) {
           cometAnimation(comet);
       }
       }
-  );
+  ); 
 }
 
 function createComet() {
-  let sizeComet = cometConfig.size;
-  let trailSize = cometConfig.trailSize;
-  let comet = new PIXI.Graphics()
-      .beginFill(0xFFFFFF)
-      .lineStyle(0, 0xffffff)
-      .arc(0, 0, 100 * sizeComet, Math.PI / 2, 3 * Math.PI / 2)
-      .moveTo(0, -100 * sizeComet)
-      .lineTo(0, 100 * sizeComet)
-      .lineTo(trailSize, 0)
-      .closePath()
-      .endFill();
-
-  cometAnimation(comet);
-  return comet
+  let cometSprite = PIXI.Sprite.from(comet1);
+  cometAnimation(cometSprite);
+  return cometSprite
 }
 
 

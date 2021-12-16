@@ -47,7 +47,6 @@
     "@fontsource/capriola": "^4.5.0",
     "@fontsource/roboto": "^4.5.1",
     "clean-webpack-plugin": "^4.0.0",
-    "file-loader": "^6.2.0",
     "gsap": "^3.8.0",
     "normalize.css": "^8.0.1",
     "pixi.js": "^5.3.11"
