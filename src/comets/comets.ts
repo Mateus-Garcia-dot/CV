@@ -1,43 +1,15 @@
-import { PIXI } from '../vendor';
-import { gsap } from '../vendor';
-import { Power0 } from '../vendor';
+import { PIXI, gsap, Power0 } from '../vendor';
+import { randomIntFromInterval, getAngle, randomFloatFromInterval, importSpritesFromFile } from './utilities';
 import { $ } from '../vendor';
-const comet1 = require("/home/mateus/gitProjects/CV/src/assets/cometsSprites/size1.svg") as string;
-
 
 var cometConfig:any = {
-  currNumber: 0,
   quantity: 5,
-  comets: [],
   duration: 1,
+  sprites: importSpritesFromFile(),
+  getRandomsprite: () => {
+    return cometConfig.sprites[randomIntFromInterval(0,cometConfig.sprites.length-1)]
+  }
 }
-
-function resize(){
-  app.renderer.resize(window.innerWidth, window.innerHeight);
-}
-
-
-const canvasWrapper:any = document.getElementById('wholePage');
-
-var app = new PIXI.Application({ resizeTo: canvasWrapper });
-app.view.style.position = 'absolute';
-
-function randomIntFromInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-function getAngle(x1, y1, x2, y2) {
-  let x = x2 - x1;
-  let y = y2 - y1;
-  let radAngle = Math.atan(y / x);
-
-  if (x < 0) return radAngle;
-  return radAngle + Math.PI;
-}
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 
 function cometAnimation(comet) {
   comet.x = Math.random() * app.screen.width;
@@ -46,62 +18,59 @@ function cometAnimation(comet) {
   let finalY = Math.random() * app.screen.height;
   comet.rotation = getAngle(comet.x, comet.y, finalX, finalY);
   let duration = randomIntFromInterval(1, 5);
+  let scale = randomFloatFromInterval(0.1,0.9);
+  comet.scale.set(scale,scale)
   gsap.set(comet, { alpha: 0 });
   gsap.to(comet, {
       alpha: 1,
       duration: duration / 2,
       ease: "power1.inOut",
       onComplete: function () {
-          gsap.to(comet, {
+        gsap.to(comet, {
               alpha: 0,
               duration: duration / 2,
               ease: "power1.inOut"
           })
-      }
+        }
   });
   gsap.to(comet, {
-      x: finalX,
+    x: finalX,
       y: finalY,
       ease: Power0.easeIn,
       duration: duration,
       onComplete: function () {
           cometAnimation(comet);
+        }
       }
-      }
-  ); 
+  );
 }
 
-function createComet() {
-  let cometSprite = PIXI.Sprite.from(comet1);
+export function createComet() {
+  let spriteSvg = cometConfig.getRandomsprite();
+  let cometSprite = PIXI.Sprite.from(spriteSvg);
   cometAnimation(cometSprite);
-  return cometSprite
+  app.stage.addChild(cometSprite);
 }
 
-
-async function commetQuantity() {
-  while (true) {
-      await sleep(1000);
-      if (cometConfig.currNumber < cometConfig.quantity) {
-          cometConfig.currNumber++;
-          addCometToStage();
-      } 
-      if (cometConfig.currNumber > cometConfig.quantity) {
-          cometConfig.currNumber--;
-          app.stage.removeChild(cometConfig.comets[0]);
-      }
+export function removeComet(){
+  if (app.stage.children.length != 0){
+    app.stage.removeChild(app.stage.children[0])
   }
 }
-
-function addCometToStage() {
-  let comet = createComet();
-  cometConfig.comets.push(comet);  
-  app.stage.addChild(comet);
+export function cometQuantity() {
+  return app.stage.children.length
 }
+
+const canvasWrapper:any = $("body")[0]
+var app = new PIXI.Application({ resizeTo: canvasWrapper });
+app.view.style.position = 'absolute';
+
 
 export function init() {
-  commetQuantity();
-  addCometToStage();
-  // append app.view on canvasWrapper class jquery
+  for (let i = 0; i < cometConfig.quantity; i++) {
+    createComet();
+  }
   $('body').prepend($(app.view));
-
 }
+
+

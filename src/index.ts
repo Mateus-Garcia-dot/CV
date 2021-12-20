@@ -15,3 +15,17 @@ $("#lenguageBT").on("click", function() {
 })
 
 comets.init();
+
+$(document).on('keypress',function(e) {
+    if(e.which == 43) {
+        comets.createComet();
+        console.log('Quantidade de cometas:' + comets.cometQuantity())
+    }
+});
+
+$(document).on('keypress',function(e) {
+    if(e.which == 45) {
+        comets.removeComet();
+        console.log('Quantidade de cometas:' + comets.cometQuantity())
+    }
+});
