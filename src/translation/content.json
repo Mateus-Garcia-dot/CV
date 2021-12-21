@@ -8,7 +8,7 @@
         }, 
         "secondPage": {
             "title": "Sobre mim",
-            "body": "lorem ipsum dolor sit amet, consectetur adipis"
+            "body": "Olá! Eu sou um estudante começando na carreira de desenvolvimento de software, tenho paixão pela profissão e estou sempre disposto a aprender mais."
         },
         "thirdPage": {
             "university":{
@@ -56,7 +56,7 @@
         }, 
         "secondPage": {
             "title": "About me",
-            "body": "lorem ipsum dolor sit amet, consectetur adipis"
+            "body": "Hi, I'm a student starting the career of software development, I love the profession and I'm always ready to learn more."
         },
         "thirdPage": {
             "university":{

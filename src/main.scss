@@ -7,6 +7,7 @@
 @import "~css.gg/icons/scss/pen.scss";
 @import "~css.gg/icons/scss/software-download.scss";
 
+$yellow:#F5C902;
 
 @mixin circle($color,$xSize,$ysize ) {
     background: $color;
@@ -14,7 +15,13 @@
     width: $xSize;
     height: $ysize;
 }
-$yellow:#F5C902;
+
+@mixin border {
+    border-style: solid;
+    border-width: 3px;
+    border-color: $yellow;  
+}
+
 
 *{
     z-index:3;
@@ -35,7 +42,7 @@ button {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     #buttonContainer{
         display: flex;
         align-items: center;
@@ -113,17 +120,17 @@ button {
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: black;
     align-items: center;
     justify-items: center;
     @media screen and (max-width: 1024px) {
-        height: 100vh * 2;
+        min-height: 100vh * 2;
         flex-direction: column; 
     }
     #circles {
         display: flex;
-        height: 100vh;
+        min-height: 100%;
         flex-direction: column;
         width: 45%;
         position: absolute;
@@ -171,29 +178,29 @@ button {
     #myPictureContainer{
         display: flex;
         width: 40%;
+        height: 100vh; 
         justify-content: center;
         @media screen and (max-width: 1024px) {    
             align-items: center;
             width: 100vw;
-            height: 100vh;
+            min: 100vh;
         }   
         z-index: 4;
         #myPhoto {
-            display: flex;
             width: auto;
             height: 750px;
             border-radius: 200px;
             @media (max-width: 1024px) {    
                 justify-self: center;
                 align-self: center;
-                height:70%;
+                min-height:80%;
             }   
         }
     }
     #aboutMeContainer {
         display: flex;
         width: 60%;
-        height: 100vh;
+        min-height: 100vh;
         justify-content: center;
         align-items: center;
         @media (max-width: 1024px) {    
@@ -203,24 +210,23 @@ button {
             background-color: white;
             padding: 7%;
             width: 60%;
-            height: 35%;
+            min-height: 45%;
             border-radius: 100px;
             @media screen and (max-width: 1024px) {    
                 width: 100%;
-                height:auto;
-                height: 50%;
+                min-height: 50%;
             }   
             .writing{
                 display: flex;
                 flex-direction: column;
                 .title {
-                    margin: 3%;
+                    margin: 1%;
                     font-family: roboto;
                     text-align: center;
                     font-size: 300%;
                     @media screen and (max-width: 1024px) {  
-                        margin: 10%;
-                        font-size: 100px;
+                        margin: 2%;
+                        font-size:3em;
                     }
                 }
                 .body {
@@ -228,7 +234,7 @@ button {
                     font-size: 160%;
                     line-height: 140%;
                     @media screen and (max-width: 1024px) {  
-                        font-size: 50px;
+                        font-size: 2em;
                     }
                 }
             }
@@ -241,63 +247,29 @@ button {
     display: flex;
     background-color: black;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     @media screen and (max-width: 1024px) {  
-        height: 100vh * 2;
+        min-height: 100vh * 2;
         flex-direction: column; 
     }
 
-    .circlesT {
-        display: flex;
-        height: 100vh;
-        width: 100vw;
-        position: absolute;
-        z-index: 1;
-    
-        @media screen and (max-width: 1024px) {
-            height: 100vh * 2;
-        }
-        #leftCircle {
-            @include circle($yellow, 350px,350px);
-            position: absolute;
-            margin-left: -100px;
-            margin-top: 100px;
-            top: 0;
-            left: 0;
-            @media screen and (max-width: 1024px) {
-                margin-top:0;
-                @include circle($yellow, 250px,250px);
-            }        
-        }
-    
-        #rightCircle {
-            @include circle($yellow, 350px,350px);
-            position: absolute;
-            justify-self: flex-start;
-            align-self:flex-end;
-            margin-top: auto;
-            margin-bottom: auto;
-            bottom: 0; right: 0;
-            @media screen and (max-width: 1024px) {
-                @include circle($yellow, 250px,250px);
-            }     
-        }
-
-
-    }
     #universityContainer {
         display: flex;
         width: 50%;
-        height: 100%;
+        min-height: 100%;
+        margin-top:5%;
+        margin-bottom:5%;
         justify-content: center;
         align-items: center;
         @media screen and (max-width: 1024px) {  
+            margin-top:20%;
+            margin-bottom: 20%;
             width: 100%;
         }
         .WhiteBox {
             background-color: white;
-            width: 50%;
-            height: 80%;
+            min-width: 50%;
+            min-height: 100%;
             border-radius: 100px;
             @media screen and (max-width: 1024px) {  
                 width: 80%;
@@ -315,22 +287,19 @@ button {
                     margin: 5%;
                     font-family: roboto;
                     text-align: center;
-                    font-size: 270%;
-                    @media screen and (max-width: 1024px) {  
-                        font-size: 100px;
-                    }
+                    font-size: 3em;
                 }
                 .infos {
                     display: flex;
                     flex-direction: column;
                     line-height: 140%;
                     font-size: amiko;    
-                    font-size: 120%;
+                    font-size: 1.3em;
                     height: 30%;
                     width: 100%;
                     flex-wrap: wrap;
                     @media screen and (max-width: 1024px) {  
-                        font-size: 50px;
+                        font-size: 2em;
                     }
                     .leftPart{
                         font-family: roboto;
@@ -342,17 +311,19 @@ button {
     }
     #learningContainer {
         display:flex;
-        width:  50%;
-        height: 100%;
+        min-width:  50%;
+        min-height: 100%;
         justify-content: center;
         align-items: center;
+        margin-top:5%;
+        margin-bottom:5%;
         @media screen and (max-width: 1024px) {  
             width: 100%;
         }
         #WhiteBox {
             background-color: white;
-            width: 50%; 
-            height: 80%;
+            min-width: 50%; 
+            height: 100%;
             border-radius: 100px;
             @media screen and (max-width: 1024px) {  
                 width: 80%;
@@ -369,10 +340,7 @@ button {
                 .title {
                     margin: 5%;
                     font-family: roboto;
-                    font-size: 270%;
-                    @media screen and (max-width: 1024px) {  
-                        font-size: 100px;
-                    }
+                    font-size: 3em;
                 }
                 .infos {
                     display: flex;
@@ -380,9 +348,9 @@ button {
                     flex-direction: column;
                     line-height: 140%;
                     font-size: amiko;    
-                    font-size: 120%;
+                    font-size: 1.3em;
                     @media screen and (max-width: 1024px) {  
-                        font-size: 50px;
+                        font-size: 2em;
                     }
                     .leftPart{
                         font-family: roboto;
