@@ -125,7 +125,6 @@ button {
     align-items: center;
     justify-items: center;
     @media screen and (max-width: 1024px) {
-        min-height: 100vh * 2;
         flex-direction: column; 
     }
     #circles {
@@ -149,7 +148,7 @@ button {
             left: 0;
             @media screen and (max-width: 1024px) {
                 margin-top:0;
-                @include circle($yellow, 250px,250px);
+                @include circle($yellow, 60vw,60vw);
             }        
         }
         #secondCircle {
@@ -161,7 +160,7 @@ button {
             margin-bottom: auto;
             top: 0; bottom: 0; right: 0;
             @media screen and (max-width: 1024px) {
-                @include circle($yellow, 250px,250px);
+                @include circle($yellow, 60vw,60vw);
             }     
         }
         #thirdCircle {
@@ -171,7 +170,7 @@ button {
             bottom: 0;
             left: 0;
             @media screen and (max-width: 1024px) {
-                @include circle($yellow, 250px,250px);
+                @include circle($yellow, 60vw,60vw);
             }     
         }
     }
@@ -187,13 +186,14 @@ button {
         }   
         z-index: 4;
         #myPhoto {
-            width: auto;
-            height: 750px;
+            max-height: 95vh;
+            max-width: 90vw;
             border-radius: 200px;
+            margin: 0%;
             @media (max-width: 1024px) {    
                 justify-self: center;
                 align-self: center;
-                min-height:80%;
+                
             }   
         }
     }
@@ -249,7 +249,6 @@ button {
     width: 100vw;
     min-height: 100vh;
     @media screen and (max-width: 1024px) {  
-        min-height: 100vh * 2;
         flex-direction: column; 
     }
 
@@ -367,7 +366,7 @@ button {
 
 #fourthPage{
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     background-color: black;
     justify-content: center;
@@ -390,7 +389,7 @@ button {
                 text-align: center;
                 font-family: Roboto;
                 @media screen and (max-width: 1024px) {  
-                    font-size: 350%;
+                    font-size: 4em;
                     margin-top: 1%;
                 }
             }
@@ -404,7 +403,7 @@ button {
                     font-family: amiko;
                     font-size: 1.5vw;
                     @media screen and (max-width: 1024px) {  
-                        font-size: 140%;
+                        font-size: 2em;
                     }
                 }
                 p{
@@ -467,7 +466,7 @@ button {
                     font-family: Roboto;
                     margin-left: 5%;
                     @media screen and (max-width: 1024px) {  
-                        font-size: 120%;
+                        font-size: 2em;
                     }
                 }
             }

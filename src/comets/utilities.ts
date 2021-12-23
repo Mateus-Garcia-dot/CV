@@ -12,7 +12,6 @@ export function getAngle(x1, y1, x2, y2) {
     let x = x2 - x1;
     let y = y2 - y1;
     let radAngle = Math.atan(y / x);
-  
     if (x < 0) return radAngle;
     return radAngle + Math.PI;
 }
